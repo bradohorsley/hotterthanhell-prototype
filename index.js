@@ -36,8 +36,6 @@ var hell;
 var owid = "";
 
 $(function() {
-  var lat = "42.4348";
-  var long = "-83.9849";
 
   $.ajax({
     url:
@@ -90,12 +88,11 @@ $(function() {
     }
   });
 
-  fetchAndShowWeather(lat, long);
-
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function(position) {
-      console.log(position.coords.latitude);
-      console.log(position.coords.longitude);
+      var lat = position.coords.latitude;
+      var lon = position.coords.longitude;
+      fetchAndShowWeather(lat, lon);
     },function(error){
       switch(error.code) {
     case error.PERMISSION_DENIED:
@@ -116,6 +113,24 @@ $(function() {
     x.innerHTML = "Geolocation is not supported by this browser.";
     console.log(navigator.error);
   }
+
+  //Change the temp from C to F
+  $("#weather-cards-container").on('click','.c-control',function(){
+    var parent = $(this).parent().parent();
+    parent.find(".celcius").removeClass("hidden");
+    parent.find(".farenheight").addClass("hidden");
+    $(this).removeClass("not-in-use");
+    parent.find(".f-control").addClass("not-in-use");
+
+
+  });
+  $("#weather-cards-container").on('click','.f-control',function(){
+    var parent = $(this).parent().parent();
+    parent.find(".celcius").addClass("hidden");
+    parent.find(".farenheight").removeClass("hidden");
+    $(this).removeClass("not-in-use");
+    parent.find(".c-control").addClass("not-in-use");
+  });
 });
 
 function addWeatherCard(data) {

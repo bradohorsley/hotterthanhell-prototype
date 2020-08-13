@@ -1,3 +1,5 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <div id="top-bar">
 	<ul class="nav justify-content-center">
 		<li class="nav-item">
@@ -22,15 +24,16 @@
 
 <template id="weather-card">
 	<div class="col-md-6">
-		<div class="card weather-card shadow-sm p-3 mb-5">
+		<div class="card weather-card shadow-sm mb-2">
 			<div class="card-body">
 				<h3 class="card-title">{{location}}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">{{date}} {{time}}</h6>
 					<h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
 					<div class="weather-card-core">
 						<i class="weather-card-icon {{icon}}"></i>
-						{{celcius}}
-						<sup>&deg;C/<a href="#">&deg;F</a></sup>
+						<span class="celcius">{{celcius}}</span>
+            <span class="farenheight hidden">{{Farenheight}}</span>
+						<sup><span class="c-control">&deg;C</span>/<span class="f-control not-in-use">&deg;F</span></sup>
 					</div>
 					<div class="row">
 						<div class="col">

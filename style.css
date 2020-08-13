@@ -8,7 +8,12 @@ a, a:hover { text-decoration: none;}
   padding: 0.5em 0;
 }
 
-.weather-card { margin: 0em 0; text-transform: capitalize; }
-.weather-card-core {  font-size: 5em; }
+.title { color: #fe7a15; }
+
+.weather-card { text-transform: capitalize; }
+.weather-card-core {  font-size: 4.8em; }
 .weather-card-icon { font-size: 0.8em; padding: 0.5em 0; color: #fe7a15; }
-sup {font-size: 0.25em;vertical-align: super;}
+sup {font-size: 0.25em; vertical-align: super;}
+.hidden { display: none; }
+.c-control, .f-control { cursor: pointer; }
+.not-in-use { color: blue; }
