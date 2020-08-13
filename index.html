@@ -26,14 +26,14 @@
 
 <template id="weather-card">
 	<div class="col-md-6">
-		<div class="card weather-card">
+		<div class="card weather-card shadow-sm p-3 mb-5">
 			<div class="card-body">
 				<h3 class="card-title">{{location}}</h5>
 					<h6 class="card-subtitle mb-2 text-muted">{{date}} {{time}}</h6>
 					<h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
 					<div class="weather-card-core">
 						<i class="weather-card-icon {{icon}}"></i>
-						{{temperature}}
+						{{celcius}}
 						<sup>&deg;C/<a href="#">&deg;F</a></sup>
 					</div>
 					<div class="row">

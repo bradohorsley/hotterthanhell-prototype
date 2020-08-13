@@ -9,41 +9,40 @@ import "./icons.js";
 
 var iconsjson = localStorage.getItem("iconsjson");
 var weatherIcons = JSON.parse(iconsjson);
-var date = new Date();
-var time = date.getHours() + ":" + date.getMinutes();
+var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var hell;
 var owid = "";
 
 $(function() {
-  var data = [
-    {
-      location: "Hell, USA",
-      date: "Thursday August 13th",
-      time: "18:00",
-      description: "Partially Cloudy",
-      icon: "wi wi-day-cloudy",
-      temperature: "26"
-    }
-  ];
-
-addWeatherCard(data[0]);
 
   $.ajax({
     url:
       "https://api.openweathermap.org/data/2.5/weather?&lat=42.4348&lon=-83.9849&appid=" +
       owid,
     success: function(result) {
+      var dt = new Date( (result.dt + result.timezone ) * 1000 );
+      var celcius = Math.round(result['main'].temp - 273.15);
+      var farenheight = Math.round((celcius * 1.8) + 32);
+      var rise = new Date((result['sys'].sunrise + result.timezone) * 1000);
+      var set = new Date((result['sys'].sunset + result.timezone) * 1000);
       data = [
     {
       location: "Hell, USA",
-      date: "Thursday August 13th",
-      time: time,
+      date: days[dt.getDay()] + " " + dt.getDate() + " " + months[dt.getMonth()],
+      time: dt.getHours() + ":" + (dt.getMinutes()<10?'0':'') + dt.getMinutes(),
       description: result.weather[0].description,
       icon: getIcon(result.weather[0].id),
       temperature: result['main'].temp,
-      celcius: Math.round(result['main'].temp - 273.15)
+      celcius: celcius,
+      farenheight: farenheight,
+      wind: result['wind'].speed,
+      humidity: result['main'].humidity,
+      sunrise: rise.getHours() + ":" + (rise.getMinutes()<10?'0':'') + rise.getMinutes(),
+      sunset: set.getHours() + ":" + (set.getMinutes()<10?'0':'') + set.getMinutes()
     }
   ];
+  console.log(data);
     hell = data;
     addWeatherCard(hell[0]);
 
@@ -63,7 +62,12 @@ var card = weatherCard.replace(/{{location}}/ig, data.location)
 .replace(/{{time}}/ig, data.time)
 .replace(/{{description}}/ig, data.description)
 .replace(/{{icon}}/ig, data.icon)
-.replace(/{{temperature}}/ig, data.temperature);
+.replace(/{{celcius}}/ig, data.celcius)
+.replace(/{{farenheight}}/ig, data.farenheight)
+.replace(/{{wind}}/ig, data.wind)
+.replace(/{{humidity}}/ig, data.humidity)
+.replace(/{{sunrise}}/ig, data.sunrise)
+.replace(/{{sunset}}/ig, data.sunset);
 $("#weather-cards-container").prepend(card);
 }
 
@@ -79,19 +83,6 @@ function getIcon(code) {
   return icon;
 }
 
-$(function() {
-  $.ajax({
-    url:
-      "https://api.openweathermap.org/data/2.5/weather?&lat=42.4348&lon=-83.9849&appid=" +
-      owid,
-    success: function(result) {
-      hell = result;
-      console.log(hell);
-    },
-    error: function(xhr, status, error) {
-      console.log(error);
-    }
-  });
 
   var x = document.getElementById("demo");
   function getLocation() {
@@ -128,21 +119,5 @@ $(function() {
       "<br>Longitude: " +
       position.coords.longitude;
   }
-});
 
-function getit(data) {
-  var weather = data['weather'].id;
-  console.log(weather.icon);
-  //Create icon class name
-  var prefix = "wi wi-";
-  var code = weather.id;
-  var icon = weatherIcons[code].icon;
 
-  // If we are not in the ranges mentioned above, add a day/night prefix.
-  if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
-    icon = "day-" + icon;
-  }
-
-  // Finally tack on the prefix.
-  icon = prefix + icon;
-}
