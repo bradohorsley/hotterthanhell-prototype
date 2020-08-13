@@ -9,6 +9,8 @@ import "./icons.js";
 
 var iconsjson = localStorage.getItem("iconsjson");
 var weatherIcons = JSON.parse(iconsjson);
+var date = new Date();
+var time = date.getHours() + ":" + date.getMinutes();
 var hell;
 var owid = "";
 
@@ -25,7 +27,32 @@ $(function() {
   ];
 
 addWeatherCard(data[0]);
-addWeatherCard(data[0]);
+
+  $.ajax({
+    url:
+      "https://api.openweathermap.org/data/2.5/weather?&lat=42.4348&lon=-83.9849&appid=" +
+      owid,
+    success: function(result) {
+      data = [
+    {
+      location: "Hell, USA",
+      date: "Thursday August 13th",
+      time: time,
+      description: result.weather[0].description,
+      icon: getIcon(result.weather[0].id),
+      temperature: result['main'].temp,
+      celcius: Math.round(result['main'].temp - 273.15)
+    }
+  ];
+    hell = data;
+    addWeatherCard(hell[0]);
+
+    },
+    error: function(xhr, status, error) {
+      console.log(error);
+    }
+  });
+
 
 });
 
@@ -40,6 +67,18 @@ var card = weatherCard.replace(/{{location}}/ig, data.location)
 $("#weather-cards-container").prepend(card);
 }
 
+function getIcon(code) {
+  var prefix = "wi wi-";
+  var icon = weatherIcons[code].icon;
+  // If we are not in the ranges mentioned above, add a day/night prefix.
+  if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
+    icon = "day-" + icon;
+  }
+  // Finally tack on the prefix.
+  icon = prefix + icon;
+  return icon;
+}
+
 $(function() {
   $.ajax({
     url:
@@ -48,7 +87,6 @@ $(function() {
     success: function(result) {
       hell = result;
       console.log(hell);
-      hellCard();
     },
     error: function(xhr, status, error) {
       console.log(error);
@@ -92,8 +130,8 @@ $(function() {
   }
 });
 
-function hellCard() {
-  var weather = hell.weather[0];
+function getit(data) {
+  var weather = data['weather'].id;
   console.log(weather.icon);
   //Create icon class name
   var prefix = "wi wi-";

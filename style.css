@@ -8,9 +8,7 @@ a, a:hover { text-decoration: none;}
   padding: 0.5em 0;
 }
 
-.weathercard-core {  font-size: 5em; }
-.weathericon-card { font-size: 0.8em; padding: 0.5em 0; color: #fe7a15; }
-
+.weather-card { margin: 0.5em 0; text-transform: capitalize; }
 .weather-card-core {  font-size: 5em; }
 .weather-card-icon { font-size: 0.8em; padding: 0.5em 0; color: #fe7a15; }
 sup {font-size: 0.25em;vertical-align: super;}
