@@ -1,7 +1,16 @@
 @import url('https://unpkg.com/bootstrap/dist/css/bootstrap.min.css');
 @import url('https://erikflowers.github.io/weather-icons/css/weather-icons.css');
 
+a, a:hover { text-decoration: none;}
+
 #top-bar {
   border-top: #fe7a15 solid 3px;
   padding: 0.5em 0;
 }
+
+.weathercard-core {  font-size: 5em; }
+.weathericon-card { font-size: 0.8em; padding: 0.5em 0; color: #fe7a15; }
+
+.weather-card-core {  font-size: 5em; }
+.weather-card-icon { font-size: 0.8em; padding: 0.5em 0; color: #fe7a15; }
+sup {font-size: 0.25em;vertical-align: super;}

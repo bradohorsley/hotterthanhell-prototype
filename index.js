@@ -1,85 +1,108 @@
 // Import stylesheets
-import './style.css';
+import "./style.css";
 // Import Jquery
-import $ from 'jquery';
+import $ from "jquery";
 //import bootstrap
-import 'bootstrap';
+import "bootstrap";
 // Import Icon JSON
-import './icons.js';
+import "./icons.js";
 
-var iconsjson = localStorage.getItem('iconsjson');
+var iconsjson = localStorage.getItem("iconsjson");
 var weatherIcons = JSON.parse(iconsjson);
 var hell;
-var owid = ""
+var owid = "";
 
+$(function() {
+  var data = [
+    {
+      location: "Hell, USA",
+      date: "Thursday August 13th",
+      time: "18:00",
+      description: "Partially Cloudy",
+      icon: "wi wi-day-cloudy",
+      temperature: "26"
+    }
+  ];
 
+addWeatherCard(data[0]);
+addWeatherCard(data[0]);
 
+});
 
+function addWeatherCard(data) {
+var weatherCard = $("template#weather-card").html();
+var card = weatherCard.replace(/{{location}}/ig, data.location)
+.replace(/{{date}}/ig, data.date)
+.replace(/{{time}}/ig, data.time)
+.replace(/{{description}}/ig, data.description)
+.replace(/{{icon}}/ig, data.icon)
+.replace(/{{temperature}}/ig, data.temperature);
+$("#weather-cards-container").prepend(card);
+}
 
-
-
-
-$(function(){
-
+$(function() {
   $.ajax({
-    url: "https://api.openweathermap.org/data/2.5/weather?&lat=42.4348&lon=-83.9849&appid="+owid,
-    success: function(result){
+    url:
+      "https://api.openweathermap.org/data/2.5/weather?&lat=42.4348&lon=-83.9849&appid=" +
+      owid,
+    success: function(result) {
       hell = result;
       console.log(hell);
       hellCard();
-  },
-  error: function(xhr,status,error){
-    console.log(error);
-  }
+    },
+    error: function(xhr, status, error) {
+      console.log(error);
+    }
   });
 
-var x = document.getElementById("demo");
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+  var x = document.getElementById("demo");
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      x.innerHTML = "Geolocation is not supported by this browser.";
+      showError(navigator.error);
+    }
   }
-}
 
-getLocation();
-function showError(error) {
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      x.innerHTML = "User denied the request for Geolocation."
-      break;
-    case error.POSITION_UNAVAILABLE:
-      x.innerHTML = "Location information is unavailable."
-      break;
-    case error.TIMEOUT:
-      x.innerHTML = "The request to get user location timed out."
-      break;
-    case error.UNKNOWN_ERROR:
-      x.innerHTML = "An unknown error occurred."
-      break;
+  getLocation();
+  function showError(error) {
+    switch (error.code) {
+      case error.PERMISSION_DENIED:
+        x.innerHTML = "User denied the request for Geolocation.";
+        break;
+      case error.POSITION_UNAVAILABLE:
+        x.innerHTML = "Location information is unavailable.";
+        break;
+      case error.TIMEOUT:
+        x.innerHTML = "The request to get user location timed out.";
+        break;
+      case error.UNKNOWN_ERROR:
+        x.innerHTML = "An unknown error occurred.";
+        break;
+    }
   }
-}
 
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
-  "<br>Longitude: " + position.coords.longitude;
-}
-
-
-
+  function showPosition(position) {
+    x.innerHTML =
+      "Latitude: " +
+      position.coords.latitude +
+      "<br>Longitude: " +
+      position.coords.longitude;
+  }
 });
 
 function hellCard() {
   var weather = hell.weather[0];
   console.log(weather.icon);
   //Create icon class name
-  var prefix = 'wi wi-';
+  var prefix = "wi wi-";
   var code = weather.id;
   var icon = weatherIcons[code].icon;
 
   // If we are not in the ranges mentioned above, add a day/night prefix.
   if (!(code > 699 && code < 800) && !(code > 899 && code < 1000)) {
-    icon = 'day-' + icon;
+    icon = "day-" + icon;
   }
 
   // Finally tack on the prefix.

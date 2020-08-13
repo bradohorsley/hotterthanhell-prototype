@@ -1,13 +1,54 @@
 <div id="top-bar">
-  <ul class="nav justify-content-center">
-  <li class="nav-item">
-    <a class="nav-link" href="#test">Where is Hell?</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Cool Me Down!</a>
-  </li>
-  </ul>
+	<ul class="nav justify-content-center">
+		<li class="nav-item">
+			<a class="nav-link" href="#test">Where is Hell?</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link" href="#">Cool Me Down!</a>
+		</li>
+	</ul>
 </div>
-<div id="demo">
 
+<div class="container">
+	<div class="row" id="weather-cards-container">
+
+	</div>
 </div>
+
+
+
+<div class="container" id="demo">
+</div>
+
+<template id="weather-card">
+	<div class="col-sm-4">
+		<div class="card">
+			<div class="card-body">
+				<h3 class="card-title">{{location}}</h5>
+					<h6 class="card-subtitle mb-2 text-muted">{{date}} {{time}}</h6>
+					<h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
+					<div class="weather-card-core">
+						<i class="weather-card-icon {{icon}}"></i>
+						{{temperature}}
+						<sup>&deg;C/<a href="#">&deg;F</a></sup>
+					</div>
+					<div class="row">
+						<div class="col">
+							<i class="wi wi-windy"></i> Wind: {{wind}} mph
+						</div>
+						<div class="col">
+							<i class="wi wi-humidity"></i> Humidity: {{humidity}}%
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<i class="wi wi-sunrise"></i> Sunrise: {{sunrise}}
+						</div>
+						<div class="col">
+							<i class="wi wi-sunset"></i> Sunset: {{sunset}}
+						</div>
+					</div>
+			</div>
+		</div>
+	</div>
+</template>
