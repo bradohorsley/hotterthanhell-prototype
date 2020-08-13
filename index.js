@@ -119,6 +119,12 @@ $(function() {
       $('#getlocation').modal();
   }
 
+$("#get-manual-location").click(function(){
+  var q = $("#manual-location").val();
+  console.log(q);
+  manualFetchAndShowWeather(q);
+});
+
   //Change the temp from C to F
   $("#weather-cards-container").on('click','.c-control',function(){
     var parent = $(this).parent().parent();
@@ -174,6 +180,59 @@ function fetchAndShowWeather(lat, long) {
       lat +
       "&lon=" +
       long +
+      "&appid=" +
+      owid,
+    success: function(result) {
+      var dt = new Date((result.dt + result.timezone) * 1000);
+      var celcius = Math.round(result["main"].temp - 273.15);
+      var farenheight = Math.round(celcius * 1.8 + 32);
+      var rise = new Date((result["sys"].sunrise + result.timezone) * 1000);
+      var set = new Date((result["sys"].sunset + result.timezone) * 1000);
+      var data = [
+        {
+          location: result.name,
+          date:
+            days[dt.getDay()] +
+            " " +
+            dt.getDate() +
+            " " +
+            months[dt.getMonth()],
+          time:
+            dt.getHours() +
+            ":" +
+            (dt.getMinutes() < 10 ? "0" : "") +
+            dt.getMinutes(),
+          description: result.weather[0].description,
+          icon: getIcon(result.weather[0].id),
+          temperature: result["main"].temp,
+          celcius: celcius,
+          farenheight: farenheight,
+          wind: result["wind"].speed,
+          humidity: result["main"].humidity,
+          sunrise:
+            rise.getHours() +
+            ":" +
+            (rise.getMinutes() < 10 ? "0" : "") +
+            rise.getMinutes(),
+          sunset:
+            set.getHours() +
+            ":" +
+            (set.getMinutes() < 10 ? "0" : "") +
+            set.getMinutes()
+        }
+      ];
+      addWeatherCard(data[0]);
+    },
+    error: function(xhr, status, error) {
+      console.log(error);
+    }
+  });
+}
+function manualFetchAndShowWeather(q) {
+  $.ajax({
+    url:
+      "https://api.openweathermap.org/data/2.5/weather?&q=" +
+      q +
       "&appid=" +
       owid,
     success: function(result) {
