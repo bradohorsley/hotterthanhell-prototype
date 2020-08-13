@@ -1,6 +1,5 @@
 @import url('https://unpkg.com/bootstrap/dist/css/bootstrap.min.css');
-@import 'css/weather-icons.css';
-
+@import url('https://erikflowers.github.io/weather-icons/css/weather-icons.css');
 
 #top-bar {
   border-top: #fe7a15 solid 3px;
