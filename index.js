@@ -2,21 +2,27 @@
 import './style.css';
 // Import Jquery
 import $ from 'jquery';
+//import bootstrap
+import 'bootstrap';
 // Import Icon JSON
 import './icons.js';
 
 var iconsjson = localStorage.getItem('iconsjson');
 var weatherIcons = JSON.parse(iconsjson);
-console.log(weatherIcons);
 var hell;
+var owid = ""
+
+
+
+
+
+
+
 
 $(function(){
 
-  $("#search").click(function(){
-    $("#welcome").hide();
-  });
   $.ajax({
-    url: "https://api.openweathermap.org/data/2.5/weather?&lat=42.4348&lon=-83.9849&appid=ab2648b7507d47338137dd253097df5c",
+    url: "https://api.openweathermap.org/data/2.5/weather?&lat=42.4348&lon=-83.9849&appid="+owid,
     success: function(result){
       hell = result;
       console.log(hell);
@@ -59,6 +65,8 @@ function showPosition(position) {
   "<br>Longitude: " + position.coords.longitude;
 }
 
+
+
 });
 
 function hellCard() {
@@ -76,5 +84,4 @@ function hellCard() {
 
   // Finally tack on the prefix.
   icon = prefix + icon;
-  $("#hell").attr('class',icon);
 }
