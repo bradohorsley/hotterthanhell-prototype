@@ -12,7 +12,7 @@ var weatherIcons = JSON.parse(iconsjson);
 var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var hell;
-var owid = "";
+var owid = "ab2648b7507d47338137dd253097df5c";
 
 $(function() {
 
@@ -26,8 +26,7 @@ $(function() {
       var farenheight = Math.round((celcius * 1.8) + 32);
       var rise = new Date((result['sys'].sunrise + result.timezone) * 1000);
       var set = new Date((result['sys'].sunset + result.timezone) * 1000);
-      data = [
-    {
+      var data = [ {
       location: "Hell, USA",
       date: days[dt.getDay()] + " " + dt.getDate() + " " + months[dt.getMonth()],
       time: dt.getHours() + ":" + (dt.getMinutes()<10?'0':'') + dt.getMinutes(),
@@ -39,7 +38,7 @@ $(function() {
       wind: result['wind'].speed,
       humidity: result['main'].humidity,
       sunrise: rise.getHours() + ":" + (rise.getMinutes()<10?'0':'') + rise.getMinutes(),
-      sunset: set.getHours() + ":" + (set.getMinutes()<10?'0':'') + set.getMinutes()
+      sunset: set.getHours() + ":" + (set.getMinutes()<10?'0':'') + set.getMinutes(),
     }
   ];
   console.log(data);
