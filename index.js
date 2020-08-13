@@ -9,65 +9,130 @@ import "./icons.js";
 
 var iconsjson = localStorage.getItem("iconsjson");
 var weatherIcons = JSON.parse(iconsjson);
-var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday"
+];
+var months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
 var hell;
-var owid = "ab2648b7507d47338137dd253097df5c";
+var owid = "";
 
 $(function() {
+  var lat = "42.4348";
+  var long = "-83.9849";
 
   $.ajax({
     url:
       "https://api.openweathermap.org/data/2.5/weather?&lat=42.4348&lon=-83.9849&appid=" +
       owid,
     success: function(result) {
-      var dt = new Date( (result.dt + result.timezone ) * 1000 );
-      var celcius = Math.round(result['main'].temp - 273.15);
-      var farenheight = Math.round((celcius * 1.8) + 32);
-      var rise = new Date((result['sys'].sunrise + result.timezone) * 1000);
-      var set = new Date((result['sys'].sunset + result.timezone) * 1000);
-      var data = [ {
-      location: "Hell, USA",
-      date: days[dt.getDay()] + " " + dt.getDate() + " " + months[dt.getMonth()],
-      time: dt.getHours() + ":" + (dt.getMinutes()<10?'0':'') + dt.getMinutes(),
-      description: result.weather[0].description,
-      icon: getIcon(result.weather[0].id),
-      temperature: result['main'].temp,
-      celcius: celcius,
-      farenheight: farenheight,
-      wind: result['wind'].speed,
-      humidity: result['main'].humidity,
-      sunrise: rise.getHours() + ":" + (rise.getMinutes()<10?'0':'') + rise.getMinutes(),
-      sunset: set.getHours() + ":" + (set.getMinutes()<10?'0':'') + set.getMinutes(),
-    }
-  ];
-  console.log(data);
-    hell = data;
-    addWeatherCard(hell[0]);
-
+      var dt = new Date((result.dt + result.timezone) * 1000);
+      var celcius = Math.round(result["main"].temp - 273.15);
+      var farenheight = Math.round(celcius * 1.8 + 32);
+      var rise = new Date((result["sys"].sunrise + result.timezone) * 1000);
+      var set = new Date((result["sys"].sunset + result.timezone) * 1000);
+      var data = [
+        {
+          location: "Hell, USA",
+          date:
+            days[dt.getDay()] +
+            " " +
+            dt.getDate() +
+            " " +
+            months[dt.getMonth()],
+          time:
+            dt.getHours() +
+            ":" +
+            (dt.getMinutes() < 10 ? "0" : "") +
+            dt.getMinutes(),
+          description: result.weather[0].description,
+          icon: getIcon(result.weather[0].id),
+          temperature: result["main"].temp,
+          celcius: celcius,
+          farenheight: farenheight,
+          wind: result["wind"].speed,
+          humidity: result["main"].humidity,
+          sunrise:
+            rise.getHours() +
+            ":" +
+            (rise.getMinutes() < 10 ? "0" : "") +
+            rise.getMinutes(),
+          sunset:
+            set.getHours() +
+            ":" +
+            (set.getMinutes() < 10 ? "0" : "") +
+            set.getMinutes()
+        }
+      ];
+      hell = data;
+      addWeatherCard(hell[0]);
     },
     error: function(xhr, status, error) {
       console.log(error);
     }
   });
 
+  fetchAndShowWeather(lat, long);
 
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      console.log(position.coords.latitude);
+      console.log(position.coords.longitude);
+    },function(error){
+      switch(error.code) {
+    case error.PERMISSION_DENIED:
+      console.log("User denied the request for Geolocation.");
+      break;
+    case error.POSITION_UNAVAILABLE:
+      console.log("Location information is unavailable.");
+      break;
+    case error.TIMEOUT:
+      console.log("The request to get user location timed out.");
+      break;
+    case error.UNKNOWN_ERROR:
+      console.log("An unknown error occurred.");
+      break;
+  }
+    });
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+    console.log(navigator.error);
+  }
 });
 
 function addWeatherCard(data) {
-var weatherCard = $("template#weather-card").html();
-var card = weatherCard.replace(/{{location}}/ig, data.location)
-.replace(/{{date}}/ig, data.date)
-.replace(/{{time}}/ig, data.time)
-.replace(/{{description}}/ig, data.description)
-.replace(/{{icon}}/ig, data.icon)
-.replace(/{{celcius}}/ig, data.celcius)
-.replace(/{{farenheight}}/ig, data.farenheight)
-.replace(/{{wind}}/ig, data.wind)
-.replace(/{{humidity}}/ig, data.humidity)
-.replace(/{{sunrise}}/ig, data.sunrise)
-.replace(/{{sunset}}/ig, data.sunset);
-$("#weather-cards-container").prepend(card);
+  var weatherCard = $("template#weather-card").html();
+  var card = weatherCard
+    .replace(/{{location}}/gi, data.location)
+    .replace(/{{date}}/gi, data.date)
+    .replace(/{{time}}/gi, data.time)
+    .replace(/{{description}}/gi, data.description)
+    .replace(/{{icon}}/gi, data.icon)
+    .replace(/{{celcius}}/gi, data.celcius)
+    .replace(/{{farenheight}}/gi, data.farenheight)
+    .replace(/{{wind}}/gi, data.wind)
+    .replace(/{{humidity}}/gi, data.humidity)
+    .replace(/{{sunrise}}/gi, data.sunrise)
+    .replace(/{{sunset}}/gi, data.sunset);
+  $("#weather-cards-container").prepend(card);
 }
 
 function getIcon(code) {
@@ -82,41 +147,58 @@ function getIcon(code) {
   return icon;
 }
 
-
-  var x = document.getElementById("demo");
-  function getLocation() {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-      x.innerHTML = "Geolocation is not supported by this browser.";
-      showError(navigator.error);
+function fetchAndShowWeather(lat, long) {
+  $.ajax({
+    url:
+      "https://api.openweathermap.org/data/2.5/weather?&lat=" +
+      lat +
+      "&lon=" +
+      long +
+      "&appid=" +
+      owid,
+    success: function(result) {
+      var dt = new Date((result.dt + result.timezone) * 1000);
+      var celcius = Math.round(result["main"].temp - 273.15);
+      var farenheight = Math.round(celcius * 1.8 + 32);
+      var rise = new Date((result["sys"].sunrise + result.timezone) * 1000);
+      var set = new Date((result["sys"].sunset + result.timezone) * 1000);
+      var data = [
+        {
+          location: result.name,
+          date:
+            days[dt.getDay()] +
+            " " +
+            dt.getDate() +
+            " " +
+            months[dt.getMonth()],
+          time:
+            dt.getHours() +
+            ":" +
+            (dt.getMinutes() < 10 ? "0" : "") +
+            dt.getMinutes(),
+          description: result.weather[0].description,
+          icon: getIcon(result.weather[0].id),
+          temperature: result["main"].temp,
+          celcius: celcius,
+          farenheight: farenheight,
+          wind: result["wind"].speed,
+          humidity: result["main"].humidity,
+          sunrise:
+            rise.getHours() +
+            ":" +
+            (rise.getMinutes() < 10 ? "0" : "") +
+            rise.getMinutes(),
+          sunset:
+            set.getHours() +
+            ":" +
+            (set.getMinutes() < 10 ? "0" : "") +
+            set.getMinutes()
+        }
+      ];
+      addWeatherCard(data[0]);
+    },
+    error: function(xhr, status, error) {
+      console.log(error);
     }
-  }
-
-  getLocation();
-  function showError(error) {
-    switch (error.code) {
-      case error.PERMISSION_DENIED:
-        x.innerHTML = "User denied the request for Geolocation.";
-        break;
-      case error.POSITION_UNAVAILABLE:
-        x.innerHTML = "Location information is unavailable.";
-        break;
-      case error.TIMEOUT:
-        x.innerHTML = "The request to get user location timed out.";
-        break;
-      case error.UNKNOWN_ERROR:
-        x.innerHTML = "An unknown error occurred.";
-        break;
-    }
-  }
-
-  function showPosition(position) {
-    x.innerHTML =
-      "Latitude: " +
-      position.coords.latitude +
-      "<br>Longitude: " +
-      position.coords.longitude;
-  }
-
-
+  });
+}
