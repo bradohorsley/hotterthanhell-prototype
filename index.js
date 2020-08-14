@@ -1,3 +1,4 @@
+
 // Import stylesheets
 import "./style.scss";
 // Import Jquery
@@ -6,6 +7,17 @@ import $ from "jquery";
 import "bootstrap";
 // Import Icon JSON
 import "./icons.js";
+
+//Add into Head Tag
+$("head").append("<title>Hotter Than Hell?</title>")
+.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">")
+.append("");
+//Add Google Analytics
+//$("head").append("<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-L3MEE0FM82\"></script>");
+//window.dataLayer = window.dataLayer || [];
+//function gtag(){dataLayer.push(arguments);}
+//gtag('js', new Date());
+//gtag('config', 'G-L3MEE0FM82');
 
 var iconsjson = localStorage.getItem("iconsjson");
 var weatherIcons = JSON.parse(iconsjson);
