@@ -4,16 +4,16 @@
 a, a:hover { text-decoration: none;}
 
 #top-bar {
-  border-top: #fe7a15 solid 3px;
+  border-top: #f63700 solid 3px;
   padding: 0.5em 0;
 }
 
-.title { color: #fe7a15; }
+.title { color: #f63700; }
 
 .weather-card { text-transform: capitalize; }
 .weather-card-core {  font-size: 4.8em; }
-.weather-card-icon { font-size: 0.8em; padding: 0.5em 0; color: #fe7a15; }
+.weather-card-icon { font-size: 0.8em; padding: 0.5em 0; color: #f63700; }
 sup {font-size: 0.25em; vertical-align: super;}
 .hidden { display: none; }
 .c-control, .f-control { cursor: pointer; }
-.not-in-use { color: blue; }
+.not-in-use { color: #f63700; }
