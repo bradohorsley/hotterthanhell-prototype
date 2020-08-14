@@ -1,5 +1,5 @@
 // Import stylesheets
-import "./style.css";
+import "./style.scss";
 // Import Jquery
 import $ from "jquery";
 //import bootstrap

@@ -1,73 +1,147 @@
+<title>Hotter Than Hell?</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <div id="top-bar">
-	<ul class="nav justify-content-center">
-		<li class="nav-item">
-			<a class="nav-link" href="#test">Where is Hell?</a>
-		</li>
-		<li class="nav-item">
-			<a class="nav-link" href="#">Cool Me Down!</a>
-		</li>
-	</ul>
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-lg-9">
-			<div class="row" id="weather-cards-container">
-
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-4">
+				<img src="https://i.ibb.co/dDdd5zq/logo.png" style="width:100%;">
+			</div>
 			</div>
 		</div>
-	</div>
-</div>
+		<div class="container">
+			<p class="text-center">You know how sometimes we say it's "hotter than hell"? Well it turns out it's
+				actually
+				possible for the weather to be hotter than Hell. Hell, Michigan that is. Enter your location to find out
+				if
+				it's hotter than hell where you are.</p>
 
+			<div class="row">
+				<div class="col-lg-9">
+					<div class="row" id="weather-cards-container">
 
-<template id="weather-card">
-	<div class="col-md-6">
-		<div class="card weather-card shadow-sm mb-2">
-			<div class="card-body">
-				<h3 class="card-title">{{location}}</h5>
-					<h6 class="card-subtitle mb-2 text-muted">{{date}} {{time}}</h6>
-					<h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
-					<div class="weather-card-core">
-						<i class="weather-card-icon {{icon}}"></i>
-						<span class="celcius">{{celcius}}</span>
-            <span class="farenheight hidden">{{Farenheight}}</span>
-						<sup><span class="c-control">&deg;C</span>/<span class="f-control not-in-use">&deg;F</span></sup>
 					</div>
-					<div class="row">
-						<div class="col">
-							<i class="wi wi-windy"></i> Wind: {{wind}} mph
-						</div>
-						<div class="col">
-							<i class="wi wi-humidity"></i> Humidity: {{humidity}}%
-						</div>
-					</div>
-					<div class="row">
-						<div class="col">
-							<i class="wi wi-sunrise"></i> Sunrise: {{sunrise}}
-						</div>
-						<div class="col">
-							<i class="wi wi-sunset"></i> Sunset: {{sunset}}
-						</div>
-					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</template>
 
-<!-- Location Modal -->
-<div class="modal fade" id="getlocation" tabindex="-1">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3>Enter a Location</h3>
-        <input type="text" id="manual-location" class="form-control" placeholder="London, UK">
+		<div class="container" id="sales-content">
+			<h5>How to cope when it's hotter than hell.</h3>
+				<div class="row">
+					<div class="col-sm-8 order-2">
+						<h2 class="mb-0">Chillmax Air</h4>
+							<h6 class="text-muted mb-2">Personal space air cooler and humidifier</h6>
+							<p>Chillmax Air gives you the best features of both fans and air conditioning in one,
+								compact unit
+								that’s also a night light. Unlike fans that just move warm air around your room, or air
+								conditioning
+								units that cost the earth, make a lot of noise and use ozone-destroying chemical
+								coolants to cool
+								the air but leave it dry, Chillmax Air sprays a fine mist that is then sent through the
+								special
+								filter and so only uses evaporation and water to operate!</p>
+					</div>
+					<div class="col-sm-4 order-1">
+						<img src="https://m.media-amazon.com/images/S/aplus-seller-content-images-us-east-1/A1F83G8C2ARO7P/A2KNWE4UE7YTH1/e7f111af-1b18-463f-a631-7084b8943cc1._CR0,0,1200,1200_PT0_SX300__.jpg" style="width: 80%; display: block; margin: 0 auto;" class="rounded" alt="">
+						<br/>
+						<ul>
+							<li>✔ Cools and humidifies the air</li>
+							<li>✔ Uses just water to keep you cooler</li>
+							<li>✔ Adjustable three-speed fan</li>
+							<li>✔ Reusable, antimicrobial filter</li>
+							<li>✔ Runs up to 10 hours per fill</li>
+							<li>✔ Built-in soft-glow blue LED night light</li>
+							<li>✔ Filter is also dishwasher safe</li>
+						</ul>
+					</div>
+				</div>
+		</div>
+
+		<div class="container">
+			<h5>More Products</h5>
+
+			<div class="row">
+				<div class="col-6 p-1">
+					<div class="card">
+						<img class="card-img-top" src="https://media-live.jmldirect.com/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/h/chillmax_pillow_1_1.jpg" alt="">
+						<div class="card-body">
+							<h5 class="card-title">ChillMax Pillow</h5>
+						</div>
+					</div>
+				</div>
+				<div class="col-6 p-1">
+					<div class="card">
+						<img class="card-img-top" src="https://media-live.jmldirect.com/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/c/w/cwnf_04.jpg" alt="">
+						<div class="card-body">
+							<h5 class="card-title">Chillmax Neck Fan</h5>
+							<p>Hands-free, wearable, portable dual fans you wear around your neck!</p>
+							<p><a
+									href="https://www.amazon.co.uk/JML-Chillmax-Neck-Fan-Hands-Free/dp/B08BRRGQ18/ref=as_li_ss_tl?dchild=1&keywords=JML&qid=1597423437&sr=8-10&linkCode=ll1&tag=hotterthanhell-21&linkId=0fef9e017d0d504294ba653c96c1652a&language=en_GB">Buy
+									Now</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<template id="weather-card">
+				<div class="col-md-6">
+					<div class="card weather-card shadow-sm mb-2">
+						<div class="card-body">
+							<h3 class="card-title">{{location}}</h5>
+								<h6 class="card-subtitle mb-2 text-muted">{{date}} {{time}}</h6>
+								<h6 class="card-subtitle mb-2 text-muted">{{description}}</h6>
+								<div class="weather-card-core">
+									<i class="weather-card-icon {{icon}}"></i>
+									<span class="celcius">{{celcius}}</span>
+									<span class="farenheight hidden">{{Farenheight}}</span>
+									<sup><span class="c-control">&deg;C</span>/<span class="f-control not-in-use">&deg;F</span></sup>
+								</div>
+								<div class="row">
+									<div class="col">
+										<i class="wi wi-windy"></i> Wind: {{wind}} mph
+									</div>
+									<div class="col">
+										<i class="wi wi-humidity"></i> Humidity: {{humidity}}%
+									</div>
+								</div>
+								<div class="row">
+									<div class="col">
+										<i class="wi wi-sunrise"></i> Sunrise: {{sunrise}}
+									</div>
+									<div class="col">
+										<i class="wi wi-sunset"></i> Sunset: {{sunset}}
+									</div>
+								</div>
+						</div>
+					</div>
+				</div>
+			</template>
+
+			<!-- Location Modal -->
+			<div class="modal fade" id="getlocation" tabindex="-1">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<div class="container-flow">
+								<div class="row justify-content-center">
+									<div class="col-10">
+										<img src="https://i.ibb.co/dDdd5zq/logo.png" style="width:100%;">
+			</div>
+									</div>
+									<p class="text-center">You know how sometimes we say it's
+										"<span class="highlight">Hotter Than Hell</span>"? Well it turns out it's
+										actually possible for the weather to be hotter than Hell. Hell, Michigan that
+										is.
+										Enter your
+										location to find out if it's hotter than hell where you are.</p>
+									<h3>Enter a Location</h3>
+									<input type="text" id="manual-location" class="form-control" placeholder="London, UK">
 
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" id="get-manual-location" data-dismiss="modal" class="btn btn-primary">Enter</button>
-      </div>
-    </div>
-  </div>
-</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+										<button type="button" id="get-manual-location" data-dismiss="modal" class="btn btn-primary orange">Enter</button>
+									</div>
+								</div>
+							</div>
+						</div>

@@ -1,7 +1,11 @@
 @import url('https://unpkg.com/bootstrap/dist/css/bootstrap.min.css');
 @import url('https://erikflowers.github.io/weather-icons/css/weather-icons.css');
 
+body { background: #fdfdfd; }
+
 a, a:hover { text-decoration: none;}
+
+ul { list-style: none; }
 
 #top-bar {
   border-top: #f63700 solid 3px;
@@ -17,3 +21,10 @@ sup {font-size: 0.25em; vertical-align: super;}
 .hidden { display: none; }
 .c-control, .f-control { cursor: pointer; }
 .not-in-use { color: #f63700; }
+
+.orange { background: #f63700; border-color: #f63700; }
+.orange:hover { background: #f63700; border-color: #f63700; }
+
+.highlight { color: #f63700; }
+
+#sales-content { margin-top: 1.5em; overflow: auto; }
