@@ -10,10 +10,10 @@ import "./icons.js";
 
 //Add into Head Tag
 $("head").append("<title>Hotter Than Hell?</title>")
-.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">")
-.append("");
+.append("<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">");
+//.append("<script src=\"https://kit.fontawesome.com/e479f9a071.js\" crossorigin=\"anonymous\"></script>");
 //Add Firebase and Analytics
-//$("head").append("<script src=\"https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js\"></script>").append("<script src=\"https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js\"></script>");
+$("head").append("<script src=\"https://www.gstatic.com/firebasejs/7.18.0/firebase-app.js\"></script>").append("<script src=\"https://www.gstatic.com/firebasejs/7.18.0/firebase-analytics.js\"></script>");
 
 var iconsjson = localStorage.getItem("iconsjson");
 var weatherIcons = JSON.parse(iconsjson);

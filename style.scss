@@ -29,3 +29,13 @@ sup {font-size: 0.25em; vertical-align: super;}
 .black { color: #000 !important; cursor: default; }
 
 #sales-content { margin-top: 1.5em; overflow: auto; }
+.carousel-indicators .active{ background-color: #000; }
+.carousel-control-prev-icon { background-image:url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E"); }
+.carousel-control-next-icon {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+}
+#bottom { background: #fff; border-top: 1px #ccc solid; }
+
+.social-icon { }
+.social-icon.facebook { padding: 0.5em 0.75em; border-radius: 1.25em; margin: 0 0.25em 0 0.5em;  background: #4267B2; color: #fff; }
+.social-icon.twitter { padding: 0.5em 0.6em; border-radius: 1.5em; margin: 0 0.5em 0 0.25em;  background: #1DA1F2; color: #fff; }
